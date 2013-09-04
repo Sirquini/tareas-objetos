@@ -34,7 +34,7 @@ public:
 		: distribution(0,6), generator(time(NULL))
 	{}
 
-	void push(Figura figura){}
+	void push(const Figura& figura) const {}
 
 	Figura* pop()
 	{
