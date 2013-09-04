@@ -27,7 +27,8 @@
 class Tablero {
 
  public:
-	std::vector< Bloque > m_tablero;
+	std::vector< Bloque* > m_bloques;
+	std::vector< std::vector< bool > > m_tablero;
 	Cola m_cola;
 	size_t rows, cols;
 
@@ -36,9 +37,11 @@ class Tablero {
 	{ }
 
 	Tablero(size_t n_rows, size_t n_cols, const Cola& cola)
-		: rows{n_rows}, cols{n_cols} 
+		: m_tablero{n_rows}, rows{n_rows}, cols{n_cols} 
 	{
 		m_cola = cola;
+		for (auto& row : m_tablero)
+			row.resize(n_cols);
 	}
 
 	Cola getCola() const
@@ -51,24 +54,23 @@ class Tablero {
 		return m_cola.pop();
 	}
 
+	void registerFigura(const Figura& figura)
+	{
+
+	}
+
 	void print() const
 	{
-		int x, y;
-		for(y = 0; y < rows; ++y)
+		for (auto row : m_tablero)
 		{
-			for(x = 0; x < cols; ++x)
+			for (auto cell : row)
 			{
-				for(const auto& bloque : m_tablero)
-				{
-					if(Bloque::Bloque(x,y) == bloque)
-					{
-						std::cout << "x";
-						break;
-					}
-					else
-						std::cout << " ";
-				}
+				if (cell)
+					std::cout << "X";
+				else
+					std::cout << " ";
 			}
+			std::cout << std::endl;
 		}
 	}
 };
