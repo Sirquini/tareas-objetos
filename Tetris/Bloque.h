@@ -46,8 +46,8 @@ class Bloque {
 
 	void setPair(int x, int y) // Asigna los valores x,y como nuevas coordenadas del Bloque
 	{
-		setX(x);
-		setY(y);
+		m_x = x;
+		m_y = y;
 	}
 
 	/* Permite realizar comparar cuando dos bloques son iguales, i.e, cuando sus coordenadas x,y son iguales */

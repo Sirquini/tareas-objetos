@@ -20,65 +20,103 @@
 int main(int argc, char const *argv[])
 {
 	Cola cola;
-	Tablero tablero(20 , 10, cola);
+	Tablero tablero(14 , 10, cola);
 
 	tablero.print();
+	Figura figura = tablero.getFigura();
+	Figura linea(1);
 
-	Figura* ftest = tablero.getFigura();
-	ftest->print();
+	tablero.registerFigura(linea);
+	tablero.print();
 
-	// Comparacion de bloques
-	// Bloque b1(0,0);
-	// Bloque b2(0,0);
-	// Bloque b3(0,1);
+	tablero.rotarIzq(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.moveDown(linea);
+	tablero.print();
 
-	// std::cout << "b1 == b2: " << ((b1 == b2) ? "True":"False") << std::endl;
-	// std::cout << "b1 == b3: " << ((b1 == b3) ? "True":"False") << std::endl;
+	figura.print();
+	tablero.registerFigura(figura);
+	tablero.moveIzq(figura);
+	tablero.moveDer(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.moveDown(figura);
+	tablero.print();
 
-	// Figura test1(1);
+	tablero.evaluar();
+	tablero.print();
 
-	// std::cout << "Test Figura" << std::endl;
-	// // imprimo las posiciones iniciales
-	// test1.print();
-	// // mover a la derecha dos veces
-	// test1.moveDer();
-	// test1.moveDer();
-	// // mover hacia abajo una vos
-	// test1.moveDown();
-	// // imprimo la figura trasladada
-	// test1.print();
-	// // rotamos la figura a la derecha
-	// test1.rotar();
-	// // imprimo las nuevas posiciones
-	// test1.print();
+	Figura linea2(1);
+	Figura cuadrado(0);
 
-	// Cola cola;
-	// Figura* test2 = cola.pop();
+	linea2.rotarIzq();
+	/* Esta forma de mover figuras no checkea colisiones!
+	 * Para checkear coliciones es mejor registrar la figura en
+	 * el tablero y luego moverla con los metodos del tablero que
+	 * checkean colisiones.
+	 */
+	linea2.moveDer();
+	linea2.moveDer();
+	linea2.moveDer();
+	linea2.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
+	cuadrado.moveDer();
 
-	// std::cout << "Test Figura de Cola 1" << std::endl;
+	tablero.registerFigura(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
+	tablero.moveDown(linea2);
 
-	// test2->moveDer();
-	// test2->moveDer();
-	// test2->moveDer();
-	// test2->moveDown();
-	// test2->print();
-	// test2->rotar();
-	// test2->print();
+	tablero.registerFigura(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
+	tablero.moveDown(cuadrado);
 
-	// delete test2;
-
-	// std::cout << "Test Figura de Cola 2" << std::endl;
-	// test2 = cola.pop();
-
-	// test2->moveDer();
-	// test2->moveDer();
-	// test2->moveDer();
-	// test2->moveDown();
-	// test2->print();
-	// test2->rotar();
-	// test2->print();
-
-	// delete test2;
+	tablero.print();
+	tablero.evaluar();
+	tablero.print();
 
 	return 0;
 }

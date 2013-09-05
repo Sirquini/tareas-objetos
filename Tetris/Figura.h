@@ -34,7 +34,7 @@ class Figura {
 	Figura()
 		: m_x(0), m_y(0)
 	{
-		m_bloques.resize(4);
+		m_bloques.resize(4); // Redimenciona el vector a 4 Bloques
 	}
 
 	/* Inicializa una Figura con las coordenas iniciales de 4 Bloques, dependiendo la forma de la Figura, x [0,6]*/
@@ -42,7 +42,7 @@ class Figura {
 		: m_x(0), m_y(0)
 	{
 		assert(x >= 0 && x < 7); // Hay 7 figuras en un juego de Tetris normal.
-		m_bloques.resize(4);
+		m_bloques.resize(4); // Redimenciono el vector para contener 4 Bloques
 		switch(x)
 		{
 			/* Cuadrado */
@@ -69,26 +69,21 @@ class Figura {
 			bloque.setPair(-bloque.getY(), bloque.getX());
 	}
 
-	/* Mueve los Bloques de una Figura una posicion hacia el lado positivo del eje x*/
-	void moveDer()
+	/* Rota una Figura en sentido antihorario. */
+	void rotarIzq()
 	{
-		for(auto& bloque : m_bloques)
-			bloque.setX(bloque.getX() + 1);
+		for (auto& bloque : m_bloques)
+			bloque.setPair(bloque.getY(), -bloque.getX());
 	}
 
-	/* Mueve los Bloques de una Figura una posicion hacia el lado negativo del eje x*/
-	void moveIzq()
-	{
-		for(auto& bloque : m_bloques)
-			bloque.setX(bloque.getX() - 1);
-	}
+	/* Mueve la Figura una posicion hacia el lado positivo del eje x*/
+	void moveDer() { ++m_x;	}
 
-	/* Aumenta en 1 la posicion y de los Bloques que componen la Fiogura */
-	void moveDown()
-	{
-		for(auto& bloque : m_bloques)
-			bloque.setY(bloque.getY() + 1);
-	}
+	/* Mueve la Figura una posicion hacia el lado negativo del eje x*/
+	void moveIzq() { --m_x; }
+
+	/* Aumenta en 1 la posicion y de la Fiogura */
+	void moveDown()	{ ++m_y; }
 
 	/* Imprime las coordenadas x,y de cada Bloque que compone la Figura*/
 	void print() const
