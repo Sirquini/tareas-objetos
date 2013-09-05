@@ -62,6 +62,14 @@ class Bloque {
 		std::cout << "(" << m_x << ", " << m_y << ")" << std::endl;
 	}
 
+	friend std::ostream& operator<< (std::ostream& o, Bloque& b);
+
 };
+
+std::ostream& operator<< (std::ostream& o, Bloque& b)
+{
+	o << "(" << b.m_x << ", " << b.m_y << ")";
+	return o;
+}
 
 #endif // Bloque_h

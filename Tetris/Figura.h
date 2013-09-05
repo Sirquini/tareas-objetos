@@ -88,12 +88,22 @@ class Figura {
 	/* Imprime las coordenadas x,y de cada Bloque que compone la Figura*/
 	void print() const
 	{
-		std::cout << "==[Figura]==" << std::endl;
+		std::cout << "==[Figura(" << m_x << "," << m_y << ")]==" << std::endl;
 		for (auto& bloque : m_bloques)
 			bloque.print();
 	}
 
+	friend std::ostream& operator<< (std::ostream& o, Figura& f);
+
 };
+
+std::ostream& operator<< (std::ostream& o, Figura& f)
+{
+	o << "==[Figura(" << f.m_x << "," << f.m_y << ")]==" << std::endl;
+		for (auto& bloque : f.m_bloques)
+			o << bloque << std::endl;
+	return o;
+}
 
 class Cuadrado
 	: public Figura

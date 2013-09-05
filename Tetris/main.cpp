@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 	tablero.moveDown(linea);
 	tablero.print();
 
-	figura.print();
+	std::cout << figura;
 	tablero.registerFigura(figura);
 	tablero.moveIzq(figura);
 	tablero.moveDer(figura);
