@@ -95,4 +95,102 @@ class Figura {
 
 };
 
+class Cuadrado
+	: public Figura
+{
+public:
+	Cuadrado()
+	{
+		m_x = 0; m_y = 0;
+		m_bloques = {{0,0}, {1,0}, {0,1}, {1,1}};
+	}
+
+	~Cuadrado(){}
+
+};
+
+class Linea
+	: public Figura
+{
+public:
+	Linea()
+	{
+		m_x = 0; m_y = 0;
+		m_bloques = {{0,0}, {0,1}, {0,2}, {0,3}};
+	}
+
+	~Linea(){}
+
+};
+
+class FiguraL
+	: public Figura
+{
+public:
+	FiguraL()
+	{
+		m_x = 0; m_y = 1;
+		m_bloques = {{0,-1}, {0,0}, {0,1}, {1,1}};
+	}
+
+	~FiguraL(){}
+
+};
+
+class FiguraLI
+	: public Figura
+{
+public:
+	FiguraLI()
+	{
+		m_x = 1; m_y = 1;
+		m_bloques = {{0,-1}, {0,0}, {0,1}, {-1,1}};
+	}
+
+	~FiguraLI(){}
+
+};
+
+class FiguraZ
+	: public Figura
+{
+public:
+	FiguraZ()
+	{
+		m_x = 1; m_y = 0;
+		m_bloques = {{-1,0}, {0,0}, {0,1}, {1,1}};
+	}
+
+	~FiguraZ(){}
+
+};
+
+class FiguraZI
+	: public Figura
+{
+public:
+	FiguraZI()
+	{
+		m_x = 2; m_y = 0;
+		m_bloques = {{-1,0}, {0,0}, {-2,1}, {-1,1}};
+	}
+
+	~FiguraZI(){}
+
+};
+
+class FiguraT
+	: public Figura
+{
+public:
+	FiguraT()
+	{
+		m_x = 1; m_y = 0;
+		m_bloques = {{-1,0}, {0,0}, {1,0}, {0,1}};
+	}
+
+	~FiguraT(){}
+
+};
+
 #endif // Figura_h
