@@ -24,6 +24,9 @@ int main(int argc, char const *argv[])
 
 	tablero.print();
 
+	Figura* ftest = tablero.getFigura();
+	ftest->print();
+
 	// Comparacion de bloques
 	// Bloque b1(0,0);
 	// Bloque b2(0,0);

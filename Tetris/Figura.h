@@ -28,59 +28,45 @@ class Figura {
 
  public:
 	std::vector< Bloque > m_bloques;
+	int m_x, m_y; //Coordenadas absolutas (respecto a una matriz)
 
 	/* Inicializa el vector de Bloques en 4 Bloques (0,0) */
 	Figura()
+		: m_x(0), m_y(0)
 	{
 		m_bloques.resize(4);
 	}
 
 	/* Inicializa una Figura con las coordenas iniciales de 4 Bloques, dependiendo la forma de la Figura, x [0,6]*/
 	Figura(int x)
+		: m_x(0), m_y(0)
 	{
 		assert(x >= 0 && x < 7); // Hay 7 figuras en un juego de Tetris normal.
 		m_bloques.resize(4);
-		if (x == 0)
-		{	/* Cuadrado */
-			m_bloques = {{0,0}, {1,0}, {0,1}, {1,1}};
-		}
-		else if (x == 1)
-		{	/* Linea */
-			m_bloques = {{0,0}, {0,1}, {0,2}, {0,3}};
-		}
-		else if (x == 2)
-		{	/* Figura L */
-			m_bloques = {{0,0}, {0,1}, {0,2}, {1,2}};
-		}
-		else if (x == 3)
-		{	/* Figura Z */
-			m_bloques = {{0,0}, {1,0}, {1,1}, {2,1}};
-		}
-		else if (x == 4)
-		{	/* Figura L invertida */
-			m_bloques = {{1,0}, {1,1}, {1,2}, {0,2}};
-		}
-		else if (x == 5)
-		{	/* Figura Z invertida */
-			m_bloques = {{1,0}, {2,0}, {0,1}, {1,1}};
-		}
-		else
-		{	/* Figura T */
-			m_bloques = {{0,0}, {1,0}, {2,0}, {1,1}};
+		switch(x)
+		{
+			/* Cuadrado */
+			case 0:	m_bloques = {{0,0}, {1,0}, {0,1}, {1,1}}; break;
+			/* Linea */
+			case 1: m_bloques = {{0,0}, {0,1}, {0,2}, {0,3}}; break;
+			/* Figura L */
+			case 2:	m_bloques = {{0,0}, {0,1}, {0,2}, {1,2}}; break;
+			/* Figura Z */
+			case 3:	m_bloques = {{0,0}, {1,0}, {1,1}, {2,1}}; break;
+			/* Figura L invertida */
+			case 4:	m_bloques = {{1,0}, {1,1}, {1,2}, {0,2}}; break;
+			/* Figura Z invertida */
+			case 5:	m_bloques = {{1,0}, {2,0}, {0,1}, {1,1}}; break;
+			/* Figura T */
+			case 6: m_bloques = {{0,0}, {1,0}, {2,0}, {1,1}};
 		}
 	}
 
-	/* Rota una Figura en sentido de las manecillas del reloj,
-	 * con el segundo bloque como centro de rotacion.
-	 */
-	void rotar()
+	/* Rota una Figura en sentido de las manecillas del reloj. */
+	void rotarDer()
 	{
-		// Coordenadas x,y del centro de rotacion.
-		int x = m_bloques[1].getX();
-		int y = m_bloques[1].getY();
-
 		for (auto& bloque : m_bloques)
-			bloque.setPair(-bloque.getY() + y + x, bloque.getX() - x + y);
+			bloque.setPair(-bloque.getY(), bloque.getX());
 	}
 
 	/* Mueve los Bloques de una Figura una posicion hacia el lado positivo del eje x*/
@@ -108,11 +94,9 @@ class Figura {
 	void print() const
 	{
 		std::cout << "==[Figura]==" << std::endl;
-		for (auto const bloque : m_bloques)
+		for (auto& bloque : m_bloques)
 			bloque.print();
 	}
-
-	~Figura() {}
 
 };
 
