@@ -1,0 +1,79 @@
+Autor: Santiago Quintero
+Tetriz
+
+## Compilando el programa:
+
+Para compilar este programa se recomienda usar el Makefile adjunto, haciendo
+uso del comando make. El Makefila adjunto hace uso del compilador clang++ con
+el estandar c++11 (utilizando el parametro -std=c++11).
+
+## Probando el programa
+
+Junto con el programa, el archivo main.cpp contiene un ejemplo basico para
+probar el funcionamiento de las clases.
+
+Hay dos clases principales a tener en cuenta Tablero y Cola.
+
+Para inicializar un nuevo Tablero de juego se crea una nueva instancia de 
+tablero y como parametros se pasa el numero de filas y columnas del tablero, 
+junto con una Cola para generar figuras aleatorias.
+
+Ejemplo:
+Cola cola;
+Tablero tablero(14, 10, cola);
+
+Para ingresar figuras al tablero de Tetriz, es necesario crear una instancia de una Figura, ya sea utilizando una figura nueva o utilizando una generada 
+aleatoriamente por la Cola
+
+La figura se registra por primera vez en el Tablero con su metodo 
+
+void Tablero::registrarFigura(Figura figura);
+
+Una vez se ha registrado una figura esta se puede desplazar pasando la Figura
+como parametro de los metodo del Tablero:
+
+void Tablero::moveDer(Figura); // Mover a la derecha.
+void Tablero::moveIzq(Figura); // Mover a la izquierda.
+void Tablero::moveDer(Figura); // Mover hacia abajo.
+
+Y se puede rotar con:
+
+void Tablero::rotarDer(Figura); // Rotar sentido horario.
+void Tablero::rotarIzq(Figura); // Mover sentido anti-horario.
+
+Estos metodos checkean coliciones con otros Bloques y limites del Tablero, por
+lo que si un movimiento no es posible no se vera su efecto en el tablero.
+
+Para imprimir en pantalla el esta actual para el tablero se llama al metodo:
+
+void Tablero::print() const;
+
+Para revisar y eliminar una fila llena de bloques se llama a:
+
+void Tablero::evaluar();
+
+Y para eliminar una Figura del tablero, es decir, quitar sus bloques del
+tablero, se usa:
+
+void Tablero::unregisterFigura(Figura);
+
+## Notas
+
+	Cola cola;
+	Tablero tablero(14,10,cola);
+	Figura figura = tablero.getFigura();
+
+	tablero.registerFigura(figura);
+	
+// Este procedimiento:
+
+	tablero.unregisterFigura(figura);
+	figura.moveDown();
+	tablero.registerFigura(figura);
+
+// Es equivalente a:
+	tablero.moveDown(figura);
+
+// Pero, la segunda, evita desbordamientos y checkea colisiones con otros 
+// Bloques por lo que es mejor evitar la primera.
+
