@@ -51,7 +51,7 @@ class Tablero {
 	{ return m_cola; }
 
 	/* Genera y retorna una nueva Figura sin registrar en la matrix del Tablero. */
-	Figura getFigura()
+	Figura* getFigura()
 	{ return m_cola.pop(); }
 
 	/* Rota los Bloques de una Figura en sentido horario y actualiza la matriz del Tablero */

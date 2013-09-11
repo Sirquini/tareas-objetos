@@ -19,11 +19,11 @@
 
 int main(int argc, char const *argv[])
 {
-	Cola cola;
+	Cola cola(3);
 	Tablero tablero(14 , 10, cola);
 
 	tablero.print();
-	Figura figura = tablero.getFigura();
+	Figura* figura = tablero.getFigura();
 	Figura linea(1);
 
 	tablero.registerFigura(linea);
@@ -45,20 +45,20 @@ int main(int argc, char const *argv[])
 	tablero.print();
 
 	std::cout << figura;
-	tablero.registerFigura(figura);
-	tablero.moveIzq(figura);
-	tablero.moveDer(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
-	tablero.moveDown(figura);
+	tablero.registerFigura(*figura);
+	tablero.moveIzq(*figura);
+	tablero.moveDer(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
+	tablero.moveDown(*figura);
 	tablero.print();
 
 	tablero.evaluar();
