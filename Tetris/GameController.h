@@ -41,7 +41,7 @@ public:
         resize(410, 510);
         show();
         QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
-        timer.start(1000/ 33);
+        timer.start(1000);
     }
 
     virtual ~GameController(){}
@@ -54,6 +54,12 @@ protected:
                 break;
             case Qt::Key_Right:
                 m_tbl_view.moveDerecha();
+                break;
+            case Qt::Key_Up:
+                m_tbl_view.rotarIzquierda();
+                break;
+            case Qt::Key_Down:
+                m_tbl_view.rotarDerecha();
                 break;
             default:
               QWidget::keyPressEvent(event);

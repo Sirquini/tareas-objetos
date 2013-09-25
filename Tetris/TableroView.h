@@ -27,13 +27,14 @@
 class TableroView
     : public QGraphicsItem
 {
+    int m_bloque_size = 20;
     Cola m_cola; // Cola de Figuras del juego
     Tablero m_tablero; // Tablero de figuras
     Figura* m_current; // Figura actual en el tablero, para manejo de memoria.
 
 public:
     TableroView() // Contructor de la vista
-        : m_cola(1), m_tablero(14, 10, m_cola)
+        : m_cola(1), m_tablero(20, 10, m_cola)
 	{
 		setPos(0,0);
 		setFlag(ItemIsFocusable);
@@ -65,21 +66,35 @@ public:
             for(auto it = row.begin(); it != row.end(); ++it)
             {
                 if(*it)
-                    painter->drawRect(x, y, 10, 10);
-                ++x;
+                    painter->drawRect(x, y, m_bloque_size, m_bloque_size);
+                x += m_bloque_size;
             }
-            ++y;
+            y += m_bloque_size;
         }
     }
 
     void moveDerecha()
     {
         m_tablero.moveDer(*m_current);
+        update();
     }
 
     void moveIzquierda()
     {
         m_tablero.moveIzq(*m_current);
+        update();
+    }
+
+    void rotarDerecha()
+    {
+        m_tablero.rotarDer(*m_current);
+        update();
+    }
+
+    void rotarIzquierda()
+    {
+        m_tablero.rotarIzq(*m_current);
+        update();
     }
 
 protected:
@@ -94,6 +109,7 @@ protected:
             m_tablero.registerFigura(*m_current);
             m_tablero.evaluar();
         }
+        update();
     }
 };
 
