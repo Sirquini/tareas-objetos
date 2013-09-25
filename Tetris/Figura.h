@@ -127,8 +127,8 @@ class Linea
 public:
 	Linea()
 	{
-		m_x = 0; m_y = 0;
-		m_bloques = {{0,0}, {0,1}, {0,2}, {0,3}};
+        m_x = 0; m_y = 1;
+        m_bloques = {{0,-1}, {0,0}, {0,1}, {0,2}};
 	}
 
 	~Linea(){}
@@ -184,7 +184,7 @@ public:
 	FiguraZI()
 	{
 		m_x = 2; m_y = 0;
-		m_bloques = {{-1,0}, {0,0}, {-2,1}, {-1,1}};
+        m_bloques = {{0,0}, {1,0}, {-1,1}, {0,1}};
 	}
 
 	~FiguraZI(){}
