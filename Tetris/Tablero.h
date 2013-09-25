@@ -54,10 +54,12 @@ class Tablero {
 	Figura* getFigura()
 	{ return m_cola.pop(); }
 
-	/* Rota los Bloques de una Figura en sentido horario y actualiza la matriz del Tablero */
-	void rotarDer(Figura& figura)
+	/* Rota los Bloques de una Figura en sentido horario y actualiza la matriz del Tablero
+	 * Retorna: true si la rotacion es valida, o false de no ser posible. */
+	bool rotarDer(Figura& figura)
 	{
 		int x, y; // Posiciones absolutas de un Bloque en el tablero.
+		bool r_valida = true; // Indica la validez de la rotacion.
 		unregisterFigura(figura); // Borramos la Figura de la matriz del Tablero.
 		figura.rotarDer(); // Realizamos la rotacion de cada Bloque.
 		for(auto& bloque : figura.m_bloques) // Revisamos que los Bloques esten en una posicion valida.
@@ -67,16 +69,20 @@ class Tablero {
 			if (x >= cols || x < 0 || y >= rows || y < 0 || m_tablero[y][x] )
 			{
 				figura.rotarIzq(); // De haber una posicion invalida, revertimos la rotacion.
+				r_valida = false; // Indicamos una rotacion invalida.
 				break;
 			}
 		}
 		registerFigura(figura); // Actualizamos el tablero con la nueva posicion de los bloques.
+		return r_valida; // Retornamos la validez de la rotacion.
 	}
 
-	/* Rota los Bloques de una Figura en sentido anti-horario y actualiza la matriz del Tablero */
-	void rotarIzq(Figura& figura)
+	/* Rota los Bloques de una Figura en sentido anti-horario y actualiza la matriz del Tablero
+	 * Retorna: true si la rotacion es valida, o false de no ser posible. */
+	bool rotarIzq(Figura& figura)
 	{
 		int x, y; // Posiciones absolutas de un Bloque en el tablero.
+		bool r_valida = true; // Indica la validez de la rotacion.
 		unregisterFigura(figura); // Borramos la Figura de la matriz del Tablero.
 		figura.rotarIzq(); // Realizamos la rotacion de cada Bloque.
 		for(auto& bloque : figura.m_bloques) // Revisamos que los Bloques esten en una posicion valida.
@@ -86,15 +92,19 @@ class Tablero {
 			if (x >= cols || x < 0 || y >= rows || y < 0 || m_tablero[y][x] )
 			{
 				figura.rotarDer(); // De haber una posicion invalida, revertimos la rotacion.
+				r_valida = false; // Indicamos una rotacion invalida.
 				break;
 			}
 		}
 		registerFigura(figura); // Actualizamos el tablero con la nueva posicion de los bloques.
+		return r_valida; // Retornamos la validez de la rotacion.
 	}
 
-	/* Mueve los Bloques de una Figura a la derecha y actualiza la matriz del Tablero */
-	void moveDer(Figura& figura)
+	/* Mueve los Bloques de una Figura a la derecha y actualiza la matriz del Tablero
+	 * Retorna: true si la traslacion es valida, o false de no ser posible. */
+	bool moveDer(Figura& figura)
 	{
+		bool t_valida = true; // Indica la validez de la traslacion.
 		unregisterFigura(figura); // Borramos la Figura de la matriz del Tablero.
 		figura.moveDer(); // Realizamos la traslacion de cada Bloque.
 		for (auto& bloque : figura.m_bloques) // Revisamos que cada Bloque este en una posicion valida.
@@ -102,15 +112,19 @@ class Tablero {
 			if (bloque.getX() + figura.m_x >= cols || m_tablero[bloque.getY() + figura.m_y][bloque.getX() + figura.m_x])
 			{
 				figura.moveIzq(); // De haber una posicion invalida, revertimos la traslacion.
+				t_valida = false; // Indicamos una traslacion invalida.
 				break;
 			}
 		}
 		registerFigura(figura); // Actualizamos la matriz del Tablero con la nueva posicion de cada Bloques.
+		return t_valida; // Retornamos la validez de la traslacion.
 	}
 
-	/* Mueve los Bloques de una Figura a la izquierda y actualiza la matriz del Tablero */
-	void moveIzq(Figura& figura)
+	/* Mueve los Bloques de una Figura a la izquierda y actualiza la matriz del Tablero
+	 * Retorna: true si la traslacion es valida, o false de no ser posible. */
+	bool moveIzq(Figura& figura)
 	{
+		bool t_valida = true; // Indica la validez de la traslacion.
 		unregisterFigura(figura); // Borramos la Figura de la matriz del Tablero.
 		figura.moveIzq(); // Realizamos la traslacion de cada Bloque.
 		for (auto& bloque : figura.m_bloques) // Revisamos que cada Bloque este en una posicion valida.
@@ -118,16 +132,20 @@ class Tablero {
 			if (bloque.getX() + figura.m_x < 0 || m_tablero[bloque.getY() + figura.m_y][bloque.getX() + figura.m_x])
 			{
 				figura.moveDer(); // De haber una posicion invalida, revertimos la traslacion.
+				t_valida = false; // Indicamos una traslacion invalida.
 				break;
 			}
 		}
 		registerFigura(figura); // Actualizamos la matriz del Tablero con la nueva posicion de cada Bloques.
+		return t_valida; // Retornamos la validez de la traslacion.
 	}
 
-	/* Mueve una Figura hacia abajo en la matriz del tablero */
-	void moveDown(Figura& figura)
+	/* Mueve una Figura hacia abajo en la matriz del tablero
+	 * Retorna: true si la traslacion es valida, o false de no ser posible. */
+	bool moveDown(Figura& figura)
 	{
 		int x,y; // Posiciones absolutas de un Bloque en la matriz del Tablero.
+		bool t_valida = true; // Indica la validez de la traslacion.
 		unregisterFigura(figura); // Borramos la Figura de la matriz del Tablero.
 		for (auto& bloque : figura.m_bloques) // Revisamos que cada Bloque se mueva a una posicion valida.
 		{
@@ -136,11 +154,13 @@ class Tablero {
 			if (y >= rows || m_tablero[y][x])
 			{
 				--figura.m_y; // Contrarestamos la traslacion de la figura.
+				t_valida = false; // Indicamos una traslacion invalida.
 				break;
 			}
 		}
 		figura.moveDown(); // Realizamos la traslacion de la Figura.
 		registerFigura(figura); // Actualizamos la matriz del Tablero con la nueva posicion de cada Bloques.
+		return t_valida; // Retornamos la validez de la traslacion.
 	}
 
 	/* Evalua si hay filas llenas de Bloques en la matriz del Tablero para eliminarlos */
