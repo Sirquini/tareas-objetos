@@ -44,7 +44,7 @@ public:
         timer.start(1000/ 33);
     }
 
-    virtual ~GameController();
+    virtual ~GameController(){}
 protected:
     void keyPressEvent(QKeyEvent *event)
     {

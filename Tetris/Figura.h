@@ -95,17 +95,17 @@ class Figura {
 
     virtual ~Figura(){}
 
-	friend std::ostream& operator<< (std::ostream& o, Figura& f);
+	// friend std::ostream& operator<< (std::ostream& o, Figura& f);
 
 };
 
-std::ostream& operator<< (std::ostream& o, Figura& f)
-{
-	o << "==[Figura(" << f.m_x << "," << f.m_y << ")]==" << std::endl;
-		for (auto& bloque : f.m_bloques)
-			o << bloque << std::endl;
-	return o;
-}
+// std::ostream& operator<< (std::ostream& o, Figura& f)
+// {
+// 	o << "==[Figura(" << f.m_x << "," << f.m_y << ")]==" << std::endl;
+// 		for (auto& bloque : f.m_bloques)
+// 			o << bloque << std::endl;
+// 	return o;
+// }
 
 class Cuadrado
 	: public Figura

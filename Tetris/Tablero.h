@@ -29,7 +29,7 @@ class Tablero {
 	std::vector< Bloque > m_bloques; //Referencia a los bloques en el tablero.
 	std::vector< std::vector< bool > > m_tablero; // Matriz del tablero.
 	Cola m_cola; // Cola que genera la siguiente figura.
-	size_t rows, cols; // Numero de Filas y Columnas del tablero.
+	int rows, cols; // Numero de Filas y Columnas del tablero.
 
  public:
 	Tablero() //Constructora por defecto.
@@ -38,7 +38,7 @@ class Tablero {
 
 	/* Constructora del tablero, recibe el numero de filas, columnas y la cola para generar figuras,
 	 * inicializa la matriz del tablero. */
-	Tablero(size_t n_rows, size_t n_cols, const Cola& cola)
+	Tablero(int n_rows, int n_cols, const Cola& cola)
 		: m_tablero{n_rows}, rows{n_rows}, cols{n_cols} 
 	{
 		m_cola = cola;
