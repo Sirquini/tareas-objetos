@@ -61,18 +61,18 @@ void Tablero::unregisterFigura(Figura);
 
 	Cola cola;
 	Tablero tablero(14,10,cola);
-	Figura figura = tablero.getFigura();
+	Figura figura* = tablero.getFigura();
 
-	tablero.registerFigura(figura);
+	tablero.registerFigura(*figura);
 	
 // Este procedimiento:
 
-	tablero.unregisterFigura(figura);
+	tablero.unregisterFigura(*figura);
 	figura.moveDown();
-	tablero.registerFigura(figura);
+	tablero.registerFigura(*figura);
 
 // Es equivalente a:
-	tablero.moveDown(figura);
+	tablero.moveDown(*figura);
 
 // Pero, la segunda, evita desbordamientos y checkea colisiones con otros 
 // Bloques por lo que es mejor evitar la primera.
