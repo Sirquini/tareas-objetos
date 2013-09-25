@@ -93,6 +93,8 @@ class Figura {
 			bloque.print();
 	}
 
+    virtual ~Figura(){}
+
 	friend std::ostream& operator<< (std::ostream& o, Figura& f);
 
 };
