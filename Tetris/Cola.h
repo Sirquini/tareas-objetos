@@ -75,6 +75,7 @@ public:
 	{
 		Figura* result = m_cola.front();
 		m_cola.pop();
+		pushRand(distribution(generator));
 		return result;
 	}
 
