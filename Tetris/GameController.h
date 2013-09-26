@@ -31,14 +31,15 @@ class GameController
     TableroView m_tbl_view; // Vista del tablero.
 
 public:
-	GameController() // Contructor del controlador
+	GameController(int rows, int cols, int size = 20) // Contructor del controlador
+        : m_tbl_view(rows, cols, size)
     {
-        scene.setSceneRect(0 , 0, 400, 500);
+        scene.setSceneRect(0 , 0, cols * size, rows * size);
         setScene(&scene);
         scene.addItem(&m_tbl_view);
         setRenderHint(QPainter::Antialiasing);
         setWindowTitle("T3tr1z ~Sirquini");
-        resize(410, 510);
+        resize(cols * size + 10, rows * size + 10);
         show();
         QObject::connect(&timer, &QTimer::timeout, &scene, &QGraphicsScene::advance);
         timer.start(1000);

@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 
-	GameController gameCtrl;
+	// Filas, Columnas, Tamano (pixeles) por celda.
+	GameController gameCtrl(20, 10);
 
 	return app.exec();
 }

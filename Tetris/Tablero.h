@@ -196,11 +196,17 @@ class Tablero {
 			m_tablero[bloque.getY() + figura.m_y][bloque.getX() + figura.m_x] = true;
 	}
 
-    /* Retorna el estado de la matriz del Tablero */
-    std::vector< std::vector< bool > > getTablero()
-    {
-        return m_tablero;
-    }
+	/* Retorna el estado de la matriz del Tablero */
+	std::vector< std::vector< bool > > getTablero()
+	{
+		return m_tablero;
+	}
+
+	/* Retorna si una Figura se puede ingresar en el Tablero */
+	bool canRegister()
+	{
+		return !m_tablero[0][0];
+	}
 
 	/* Imprime en pantalla la representacion del estado actual del Tablero de Tetriz  */
 	void print() const
