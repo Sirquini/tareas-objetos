@@ -111,17 +111,19 @@ protected:
 			return;
 		if (!m_tablero.moveDown(*m_current))
 		{
-			delete m_current;
-			m_current = m_cola.pop();
 			if(m_tablero.canRegister())
 			{
+				delete m_current;
+				m_current = m_cola.pop();
 				m_tablero.registerFigura(*m_current);
 				m_tablero.evaluar();
+				update();
 			}
 			else
 				gameOver();
 		}
-		update();
+		else
+			update();
 	}
 };
 
