@@ -3,14 +3,28 @@ Tetriz
 
 ## Compilando el programa:
 
-Para compilar este programa se recomienda usar el Makefile adjunto, haciendo
-uso del comando make. El Makefila adjunto hace uso del compilador clang++ con
+Para compilar este programa se requiere QT version 5.
+Generar el Makefile ejecutando:
+	qmake
+Compilar haciendo uso del comando:
+	make
+El Programa adjunto hace uso del compilador clang++ con
 el estandar c++11 (utilizando el parametro -std=c++11).
 
 ## Probando el programa
 
-Junto con el programa, el archivo main.cpp contiene un ejemplo basico para
-probar el funcionamiento de las clases.
+En el main se invoca una instancia del objeto GameController cuyo constructor corresponde a:
+
+GameController (int rows, int cols, int size=20)
+
+int rows = Al numero de Filas que tiene el Tablero de Tetriz.
+int cols = Al numero de Columnas que tiene el Tablero de Tetriz.
+
+// opcional
+int size = Al numero, en pixeles, que mide lado de cada cuadrado de Tetriz, 
+		   por defecto 20 pixeles.
+
+## Para utilizar el Tetriz sin interfaz grafica:
 
 Hay dos clases principales a tener en cuenta Tablero y Cola.
 
@@ -32,14 +46,14 @@ void Tablero::registrarFigura(Figura figura);
 Una vez se ha registrado una figura esta se puede desplazar pasando la Figura
 como parametro de los metodo del Tablero:
 
-void Tablero::moveDer(Figura); // Mover a la derecha.
-void Tablero::moveIzq(Figura); // Mover a la izquierda.
-void Tablero::moveDer(Figura); // Mover hacia abajo.
+bool Tablero::moveDer(Figura); // Mover a la derecha.
+bool Tablero::moveIzq(Figura); // Mover a la izquierda.
+bool Tablero::moveDown(Figura); // Mover hacia abajo.
 
 Y se puede rotar con:
 
-void Tablero::rotarDer(Figura); // Rotar sentido horario.
-void Tablero::rotarIzq(Figura); // Mover sentido anti-horario.
+bool Tablero::rotarDer(Figura); // Rotar sentido horario.
+bool Tablero::rotarIzq(Figura); // Mover sentido anti-horario.
 
 Estos metodos checkean coliciones con otros Bloques y limites del Tablero, por
 lo que si un movimiento no es posible no se vera su efecto en el tablero.
@@ -51,6 +65,10 @@ void Tablero::print() const;
 Para revisar y eliminar una fila llena de bloques se llama a:
 
 void Tablero::evaluar();
+
+Para saber si una Figura sin alterar puede registrarse en el Tablero:
+
+bool canRegister() const;
 
 Y para eliminar una Figura del tablero, es decir, quitar sus bloques del
 tablero, se usa:
