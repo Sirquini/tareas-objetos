@@ -62,6 +62,9 @@ protected:
             case Qt::Key_Down:
                 m_tbl_view.rotarDerecha();
                 break;
+            case Qt::Key_Space:
+                m_tbl_view.moveAllDown();
+                break; 
             default:
               QWidget::keyPressEvent(event);
           }

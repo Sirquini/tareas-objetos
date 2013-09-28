@@ -99,6 +99,13 @@ public:
 		m_tablero.rotarIzq(*m_current);
 		update();
 	}
+
+	/* Mueve la Figura lo mas abajo posible, i.e. mientras no coliciones y actualiza la pantalla. */
+	void moveAllDown()
+	{
+		m_tablero.moveAllDown(*m_current);
+		update();
+	}
 	/* Avisa que el juego esta terminado, y cierra la aplicacion. */
 	void gameOver()
 	{

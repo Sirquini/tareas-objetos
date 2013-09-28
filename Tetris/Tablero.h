@@ -164,6 +164,13 @@ class Tablero {
 		return t_valida; // Retornamos la validez de la traslacion.
 	}
 
+	/* Mueve una Figura hacia abajo en la matriz del Tablero hasta que colisione con el borde del Tablero
+	 * o con otros bloques en el Tablero. */
+	void moveAllDown(Figura& figura)
+	{
+		while(moveDown(figura));
+	}
+
 	/* Evalua si hay filas llenas de Bloques en la matriz del Tablero para eliminarlos */
 	void evaluar()
 	{
@@ -208,7 +215,7 @@ class Tablero {
 	}
 
 	/* Retorna si una Figura se puede ingresar en el Tablero */
-	bool canRegister()
+	bool canRegister() const
 	{
 		return !m_tablero[0][0];
 	}
