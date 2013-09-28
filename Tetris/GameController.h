@@ -27,7 +27,7 @@ class GameController
 	Q_OBJECT
 
 	QGraphicsScene scene;
-	QTimer timer;
+	QTimer timer; // Contador de tiempo.
     TableroView m_tbl_view; // Vista del tablero.
 
 public:
@@ -47,7 +47,7 @@ public:
 
     virtual ~GameController(){}
 protected:
-    void keyPressEvent(QKeyEvent *event)
+    void keyPressEvent(QKeyEvent *event) // Responder a las entradas de teclado para mover la Figura.
     {
         switch (event->key()) {
             case Qt::Key_Left:

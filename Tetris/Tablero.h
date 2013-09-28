@@ -19,6 +19,7 @@
 #define Tablero_h
 
 #include <vector>
+#include <algorithm>
 
 #include "Bloque.h"
 #include "Cola.h"
@@ -178,6 +179,10 @@ class Tablero {
 			if (tmp)
 			{
 				m_tablero[i].assign(cols, false);
+				for(int k = i; k != 0; --k)
+				{
+					std::swap(m_tablero[k], m_tablero[k-1]);
+				}
 			}
 		}
 	}

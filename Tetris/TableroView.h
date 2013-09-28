@@ -29,7 +29,7 @@
 class TableroView
 	: public QGraphicsItem
 {
-	int m_bloque_size;
+	int m_bloque_size; // Tamano en pixeles de un Bloque  o cuadrado.
 	int m_rows, m_cols; // Numero de filas y columnas para el dibujado del Tablero.
 	Cola m_cola; // Cola de Figuras del juego
 	Tablero m_tablero; // Tablero de figuras
@@ -75,31 +75,31 @@ public:
 			y += m_bloque_size;
 		}
 	}
-
+	/* Mueve a la derecha una Figura en el Tablero, de ser posible y actualiza la pantalla. */
 	void moveDerecha()
 	{
 		m_tablero.moveDer(*m_current);
 		update();
 	}
-
+	/* Mueve a la izquierda una Figura en el Tablero, de ser posible y actualiza la pantalla. */
 	void moveIzquierda()
 	{
 		m_tablero.moveIzq(*m_current);
 		update();
 	}
-
+	/* Rota a la derecha una Figura en el Tablero, de ser posible y actualiza la pantalla. */
 	void rotarDerecha()
 	{
 		m_tablero.rotarDer(*m_current);
 		update();
 	}
-
+	/* Rota a la izquierda una Figura en el Tablero, de ser posible y actualiza la pantalla. */
 	void rotarIzquierda()
 	{
 		m_tablero.rotarIzq(*m_current);
 		update();
 	}
-
+	/* Avisa que el juego esta terminado, y cierra la aplicacion. */
 	void gameOver()
 	{
 		QMessageBox::information(0, "T3tr1z", "Game Over!", QMessageBox::Ok, QMessageBox::Ok);
@@ -107,22 +107,23 @@ public:
 	}
 
 protected:
+	/* Funcion de avance, refresca la pantalla con el nuevo estado del Tablero */
 	void advance(int step)
 	{
 		if (!step)
 			return;
-		if (!m_tablero.moveDown(*m_current))
+		if (!m_tablero.moveDown(*m_current)) // Mueve la actual Figura hacia abajo.
 		{
-			if(m_tablero.canRegister())
+			delete m_current; // De no poder mover hacia abajo libera memoria.
+			m_tablero.evaluar(); // Evaluamos el tablero.
+			if(m_tablero.canRegister()) // Checkeamo si podemos generar otra Figura.
 			{
-				delete m_current;
-				m_current = m_cola.pop();
-				m_tablero.registerFigura(*m_current);
-				m_tablero.evaluar();
+				m_current = m_cola.pop(); // Nueva Figura.
+				m_tablero.registerFigura(*m_current); // La registramos en el Tablero.
 				update();
 			}
 			else
-				gameOver();
+				gameOver(); // De no poder poner mas figuras, se acaba el juego.
 		}
 		else
 			update();
