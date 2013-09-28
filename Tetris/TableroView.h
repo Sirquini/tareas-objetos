@@ -22,6 +22,7 @@
 #include <QPainter>
 #include <QStyleOption>
 #include <QMessageBox>
+#include <QApplication>
 
 #include "Tablero.h"
 
@@ -101,7 +102,8 @@ public:
 
 	void gameOver()
 	{
-		int ret = QMessageBox::information(0, "T3tr1z", "Game Over!", QMessageBox::Ok, QMessageBox::Ok);
+		QMessageBox::information(0, "T3tr1z", "Game Over!", QMessageBox::Ok, QMessageBox::Ok);
+		QApplication::exit();
 	}
 
 protected:
